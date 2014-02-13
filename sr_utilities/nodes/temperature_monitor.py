@@ -89,7 +89,7 @@ class TemperatureMonitor(object):
 
             self.joint_monitors[joint_name] = Joint(self.pad, joint_name, begin_x, begin_y)
             
-        self.diag_sub_ = rospy.Subscriber("/diagnostics", DiagnosticArray, self.diag_cb_)
+        self.diag_sub_ = rospy.Subscriber("diagnostics", DiagnosticArray, self.diag_cb_)
         self.resize_()
                   
         while True:
