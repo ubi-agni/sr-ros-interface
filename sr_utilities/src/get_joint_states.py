@@ -11,8 +11,8 @@ class GetJointState:
     def __init__(self):
         rospy.init_node('get_joint_state_service', anonymous=True)
 
-        self.subs_1 = rospy.Subscriber("/joint_states", JointState, self.callback1)
-	self.serv = rospy.Service('/getJointState', getJointState, self.getJointStateCB)
+        self.subs_1 = rospy.Subscriber("joint_states", JointState, self.callback1)
+        self.serv = rospy.Service('getJointState', getJointState, self.getJointStateCB)
         
 #        self.pub = rospy.Publisher("/joint_states", JointState)
 
@@ -30,7 +30,7 @@ class GetJointState:
 
     def getJointStateCB(self,req):
         res=self.joint_state_msg
-	return res
+        return res
 
 if __name__ == '__main__':
     service = GetJointState()
