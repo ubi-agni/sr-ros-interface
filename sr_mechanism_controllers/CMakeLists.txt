@@ -30,6 +30,7 @@ MESSAGE(" ----- ")
 
 rosbuild_add_executable(joint_trajectory_action_controller src/joint_trajectory_action_controller.cpp)
 rosbuild_add_executable(joint_spline_trajectory_action_controller src/joint_spline_trajectory_action_controller.cpp)
+rosbuild_add_executable(hand_joint_spline_trajectory_action_controller src/hand_joint_spline_trajectory_action_controller.cpp)
 
 rosbuild_add_executable(simple_spline_trajectory example/simple_spline_trajectory.cpp)
 
