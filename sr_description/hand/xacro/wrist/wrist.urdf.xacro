@@ -11,7 +11,7 @@
       <inertial>
 		  <origin xyz="0 0 0" rpy="0 0 0" />
 		  <mass value="0.1" />
-		  <inertia  ixx="0.120" ixy="0.0"  ixz="0.0"  iyy="0.148"  iyz="0.0" izz="0.0438" />
+		  <inertia  ixx="0.00120" ixy="0.0"  ixz="0.0"  iyy="0.00148"  iyz="0.0" izz="0.000438" />
       </inertial>
 
       <visual>
