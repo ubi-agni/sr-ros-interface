@@ -20,7 +20,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <!--<insert_block name="origin" /> -->
         <mass value="0.08" />
-        <inertia  ixx="0.000026" ixy="0.0"  ixz="0.0"  iyy="0.000026"  iyz="0.0"	izz="0.000032" />
+        <inertia  ixx="0.00026" ixy="0.0"  ixz="0.0"  iyy="0.00026"  iyz="0.0"	izz="0.00032" />
       </inertial>
       <visual>
         <origin xyz="0 0 0.0005" rpy="0 0 0" />
@@ -44,8 +44,8 @@
       <insert_block name="origin" />
       <insert_block name="axis"/>
       <limit lower="${-20/180*M_PI}" upper="${20/180*M_PI}"
-      effort="10" velocity="1.0"/>
-      <dynamics damping="50.5"/>
+      effort="2" velocity="1.0"/>
+      <dynamics damping="0.1"/>
     </joint>
 
     <!-- extensions -->

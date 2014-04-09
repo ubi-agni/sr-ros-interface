@@ -2,11 +2,11 @@ sh_ffj0_mixed_position_velocity_controller:
   joint: FFJ0
   position_pid:
     d: 0.0
-    i: 0.0
+    i: 0.01
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -15,17 +15,17 @@ sh_ffj0_mixed_position_velocity_controller:
     i: 0.0
     i_clamp: 0.0
     max_force: 10.0
-    p: -20.0
+    p: -20.00
 
 sh_ffj3_mixed_position_velocity_controller:
   joint: FFJ3
   position_pid:
     d: 0.0
-    i: 0.0
+    i: 0.01
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -34,17 +34,17 @@ sh_ffj3_mixed_position_velocity_controller:
     i: 0.0
     i_clamp: 0.0
     max_force: 10.0
-    p: -20.0
+    p: -20.00
 
 sh_ffj4_mixed_position_velocity_controller:
   joint: FFJ4
   position_pid:
     d: 0.0
-    i: 0.0
+    i: 0.01
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -53,7 +53,7 @@ sh_ffj4_mixed_position_velocity_controller:
     i: 0.0
     i_clamp: 0.0
     max_force: 10.0
-    p: -20.0
+    p: -20.000
 
 sh_lfj0_mixed_position_velocity_controller:
   joint: LFJ0
@@ -63,7 +63,7 @@ sh_lfj0_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -82,7 +82,7 @@ sh_lfj3_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -101,7 +101,7 @@ sh_lfj4_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -120,7 +120,7 @@ sh_lfj5_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -139,7 +139,7 @@ sh_mfj0_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -158,7 +158,7 @@ sh_mfj3_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -177,7 +177,7 @@ sh_mfj4_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -196,7 +196,7 @@ sh_rfj0_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -215,7 +215,7 @@ sh_rfj3_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -234,7 +234,7 @@ sh_rfj4_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 1.5
     min_velocity: -1.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -348,7 +348,7 @@ sh_wrj1_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 0.5
     min_velocity: -0.5
-    p: -2.0
+    p: -0.2
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
@@ -367,7 +367,7 @@ sh_wrj2_mixed_position_velocity_controller:
     i_clamp: 0.1
     max_velocity: 0.5
     min_velocity: -0.5
-    p: -2.3
+    p: -0.23
     position_deadband: 0.0
   type: sr_mechanism_controllers/SrhMixedPositionVelocityJointController
   velocity_pid:
