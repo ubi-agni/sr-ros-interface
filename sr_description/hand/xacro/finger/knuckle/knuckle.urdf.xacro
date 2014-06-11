@@ -20,7 +20,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <!--<insert_block name="origin" /> -->
         <mass value="0.08" />
-        <inertia  ixx="0.00026" ixy="0.0"  ixz="0.0"  iyy="0.00026"  iyz="0.0"	izz="0.00032" />
+        <inertia  ixx="0.0026" ixy="0.0"  ixz="0.0"  iyy="0.0026"  iyz="0.0"	izz="0.0032" />
       </inertial>
       <visual>
         <origin xyz="0 0 0.0005" rpy="0 0 0" />
