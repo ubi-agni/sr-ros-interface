@@ -18,7 +18,7 @@
       <inertial>
         <origin xyz="0 0 0.035" rpy="0 0 0" />
         <mass value="0.3" />
-        <inertia  ixx="0.003581" ixy="0.0"  ixz="0.0"  iyy="0.005287"  iyz="0.0"	izz="0.002545" />
+        <inertia  ixx="0.00013581" ixy="0.0"  ixz="0.0"  iyy="0.000185"  iyz="0.0"	izz="0.0000725" />
       </inertial>
 
       <visual>
@@ -85,8 +85,8 @@
       <origin xyz="0 0 0.034" rpy="0 0 0" />
       <axis xyz="1 0 0" />
       <limit lower="${-40/180*M_PI}" upper="${28/180*M_PI}"
-      effort="30" velocity="1.0"/>
-      <dynamics damping="0.1"/>
+      effort="1000" velocity="10.0"/>
+      <dynamics damping="1.0"/>
     </joint>
 
     <!-- extensions -->

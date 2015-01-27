@@ -16,10 +16,10 @@
   <xacro:macro name="thproximal" params="muscle reflect prefix parent">
     <link name="${prefix}thproximal">
       <inertial>
-				<mass value="0.040" />
+				<mass value="0.016" />
 				<origin xyz="0 0 0.019" rpy="0 0 0"/>
-					<inertia  ixx="0.00496" ixy="0.0"  ixz="0.0"  iyy="0.00496"  iyz="0.0"
-				izz="0.000312" />
+					<inertia  ixx="1e-6" ixy="0.0"  ixz="0.0"  iyy="1e-6"  iyz="0.0"
+				izz="1e-6" />
 			</inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -43,9 +43,8 @@
       <child link="${prefix}thproximal"/>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <axis xyz="${reflect} 0 0" />
-      <limit lower="0" upper="${70/180*M_PI}" effort="10"
-      velocity="1.0" />
-      <dynamics damping="0.1"/>
+      <limit lower="0" upper="${70/180*M_PI}" effort="1000"      velocity="10.0" />
+      <dynamics damping="1.0"/>
     </joint>
 
     <!-- extensions -->
