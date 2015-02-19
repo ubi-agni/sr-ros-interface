@@ -44,7 +44,7 @@
       <axis xyz="0.573576436 0 ${reflect*0.819152044}" />
         <limit lower="0" upper="${45/180*M_PI}" effort="2"
       velocity="1.0" />
-      <dynamics damping="0.1"/>
+      <dynamics damping="0.001"/> 
     </joint>
 
     <!-- extensions -->
