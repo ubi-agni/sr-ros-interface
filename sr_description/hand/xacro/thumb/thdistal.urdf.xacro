@@ -22,9 +22,9 @@
 			<link name="${prefix}thbiotac_J1_dummy">
 				<inertial>
 					<origin xyz="0 0 0" rpy="0 0 0" />
-					<mass value="0.01" />
-					 <inertia  ixx="0.0007" ixy="0.0"  ixz="0.0"  iyy="0.0007"  iyz="0.0"
-        izz="0.00010" />
+					<mass value="0.008" />
+					 <inertia  ixx="0.0000011" ixy="0.0"  ixz="0.0"  iyy="0.0000011"  iyz="0.0"
+        izz="0.0000005" />
         </inertial>
 			</link>
 			
@@ -33,16 +33,21 @@
 				<child link="${prefix}thbiotac_J1_dummy"/>
 				<origin xyz="0 0 0.02" rpy="0 0 0" />
 				<axis xyz="1 0 0" />
-				<limit lower="${20*M_PI/180}" upper="${20.1*M_PI/180}" effort="10" velocity="0.1" />
-				<dynamics damping="0.001"/> 
+				<limit lower="${20*M_PI/180}" upper="${20.1*M_PI/180}" effort="1.0" velocity="4.0" />
+				<dynamics damping="0.2"/>
 			</joint>
+      
+			<gazebo reference="${prefix}THJ1">
+				<provideFeedback>1</provideFeedback>
+				<implicitSpringDamper>1</implicitSpringDamper>
+			</gazebo>
 			
 			<link name="${prefix}thbiotac">
 				<inertial>
 					<origin xyz="0 0 0" rpy="0 0 0" />
-					<mass value="0.2" />
-					 <inertia  ixx="0.0007" ixy="0.0"  ixz="0.0"  iyy="0.0007"  iyz="0.0"
-        izz="0.00010" />
+					<mass value="0.008" />
+					 <inertia  ixx="0.0000011" ixy="0.0"  ixz="0.0"  iyy="0.0000011"  iyz="0.0"
+        izz="0.0000005" />
 				</inertial>
 				<visual>
 					<origin xyz="0 0 0" rpy="0 0 0" />
@@ -85,6 +90,7 @@
 				<child link="${prefix}thbiotac"/>
 				<origin xyz="0 0.0 0.01" rpy="0 0 -1.571" />
 			</joint>
+    
 				
 			
 		  <!-- extra link to imaginary sphere in fingertip for FK/IK calculations -->
@@ -124,8 +130,8 @@
 				<inertial>
 					<mass value="0.016" />
 					<origin xyz="0 0 0.01375" rpy="0 0 0"/>
-					 <inertia  ixx="0.0007" ixy="0.0"  ixz="0.0"  iyy="0.0007"  iyz="0.0"
-        izz="0.00010" />
+					 <inertia  ixx="0.0000021" ixy="0.0"  ixz="0.0"  iyy="0.0000022"  iyz="0.0"
+        izz="0.000001" />
 				</inertial>
 				<visual>
 					<origin xyz="0 0 0" rpy="0 0 0" />
@@ -177,9 +183,14 @@
 				<child link="${prefix}thdistal"/>
 				<origin xyz="0 0 0.032" rpy="0 0 ${-M_PI/2}" />
 				<axis xyz="1 0 0" />
-				<limit lower="0" upper="${90.0*M_PI/180}" effort="10" velocity="1.0" />
-				<dynamics damping="0.001"/> 
+				<limit lower="0" upper="${90.0*M_PI/180}" effort="1.0" velocity="4.0" />
+				<dynamics damping="0.2"/>      
 			</joint>
+			<gazebo reference="${prefix}THJ1">
+				<provideFeedback>1</provideFeedback>
+				<implicitSpringDamper>1</implicitSpringDamper>
+			</gazebo>
+      
 			<link name="${prefix}thtip">
 				<inertial>
 					<mass value="0.001" />
