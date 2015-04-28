@@ -1,0 +1,34 @@
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find sr_description)/hand/xacro/palm/palm.tactile.xacro" />
+  <xacro:include filename="$(find sr_description)/hand/xacro/finger/fingers.tactile.xacro" /> 
+  
+  <property name="M_PI" value="3.1415926535897931" />
+ 
+  <!-- bio is true for biotac finger or false for standard finger -->
+  <!-- ubi is true for ubi finger or false for standard finger -->
+  <!-- eli is true for ellipsoid fingertip or false for standard finger -->
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <xacro:macro name="shadowhand_tactile" params="bio ubi eli reflect prefix">
+  
+        
+    <!-- Palm -->   
+    <xacro:palm_tactile reflect="${reflect}" prefix="${prefix}" />
+
+    <!-- First Finger -->   
+    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="ff"  finger_number="0"/>
+    
+    <!-- Middle Finger -->   
+    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="mf"  finger_number="1"/>
+    <!-- Ring Finger -->   
+    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="rf"  finger_number="2"/>
+
+    <!-- Little Finger  --> 
+    <xacro:finger_tactile lf="true" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="lf"  finger_number="3"/>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,41 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find sr_description)/hand/xacro/finger/proximal/proximal.tactile.xacro" />
+  <xacro:include filename="$(find sr_description)/hand/xacro/finger/middle/middle.tactile.xacro" />
+  <xacro:include filename="$(find sr_description)/hand/xacro/finger/distal/distal.tactile.xacro" />
+  <xacro:include filename="$(find sr_description)/hand/xacro/finger/lfmetacarpal/lfmetacarpal.tactile.xacro" />
+
+  <!-- lf is true for little finger or false for standard finger -->
+  <!-- bio is true for biotac finger or false for standard finger -->
+  <!-- ubi is true for ubi finger or false for standard finger -->
+  <!-- eli is true for ellipsoid fingertip or false for standard finger -->
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <!-- link_prefix prepends fingername to the link names -->
+  <!-- finger_number is the finger index in the distal tactile message -->
+  <xacro:macro name="finger_tactile" params="lf bio ubi eli reflect prefix link_prefix finger_number">
+    <!-- Little finger special case -->
+    <xacro:if value="${lf}">
+      <xacro:lfmetacarpal_tactile reflect="${reflect}" prefix="${prefix}"/>
+    </xacro:if> 
+    <!-- Standard finger -->
+  
+    <!-- Proximal -->
+    <xacro:proximal_tactile prefix="${prefix}" link_prefix="${link_prefix}" finger_number="${finger_number}" >
+    </xacro:proximal_tactile>
+
+    <!-- Standard Middle -->
+    <!-- only if finger is not biotac  -->
+    <xacro:unless value="${bio}">
+      <xacro:middle_tactile prefix="${prefix}" link_prefix="${link_prefix}" finger_number="${finger_number}" >
+      </xacro:middle_tactile>
+    </xacro:unless> 
+    
+    <!-- Distal  -->
+    <!-- only if finger is not biotac  -->
+    <xacro:unless value="${bio}">
+       <xacro:distal_tactile bio="${bio}" ubi="${ubi}" eli="${eli}" prefix="${prefix}" link_prefix="${link_prefix}" finger_number="${finger_number}" >
+       </xacro:distal_tactile> 
+    </xacro:unless> 
+  </xacro:macro>
+
+</robot>

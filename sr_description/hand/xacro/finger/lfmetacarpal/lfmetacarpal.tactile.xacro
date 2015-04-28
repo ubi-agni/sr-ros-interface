@@ -1,0 +1,26 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       xmlns:geom="http://playerstage.topicforge.net/gazebo/xmlschema/#geom">
+  
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <xacro:macro name="lfmetacarpal_tactile" params="prefix reflect">
+        <tactile topic="palm_extras" data="data[6]" link="${prefix}lfmetacarpal" ns="${prefix}metacarpal" xs="0 4095">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://sr_description/hand/model/ubi_tactiles/tax_metac_upper.stl" scale="${reflect*0.00101} 0.00101 0.00101" />
+          </geometry>    
+        </tactile>
+        <tactile topic="palm_extras" data="data[7]" link="${prefix}lfmetacarpal" ns="${prefix}metacarpal" xs="0 4095">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://sr_description/hand/model/ubi_tactiles/tax_metac_lower.stl" scale="${reflect*0.00101} 0.00101 0.00101" />
+          </geometry>    
+        </tactile>
+        <tactile topic="palm_extras" data="data[8]" link="${prefix}lfmetacarpal" ns="${prefix}metacarpal" xs="0 4095">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://sr_description/hand/model/ubi_tactiles/tax_metac_side.stl" scale="${reflect*0.00101} 0.00101 0.00101" />
+          </geometry>    
+        </tactile>
+  </xacro:macro>
+
+</robot>
