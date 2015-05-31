@@ -6,7 +6,7 @@
   <xacro:include filename="$(find sr_description)/hand/xacro/palm/palm.tactile.xacro" />
   <xacro:include filename="$(find sr_description)/hand/xacro/finger/fingers.tactile.xacro" /> 
   
-  <property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="M_PI" value="3.1415926535897931" />
  
   <!-- bio is true for biotac finger or false for standard finger -->
   <!-- ubi is true for ubi finger or false for standard finger -->

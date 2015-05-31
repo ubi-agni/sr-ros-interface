@@ -26,14 +26,14 @@
       <xacro:lfmetacarpal muscle="${muscletrans}" prefix="${prefix}" reflect="${reflect}" parent="${parent}" />
       <!-- Knuckle -->
       <xacro:knuckle muscle="${muscletrans}" prefix="${prefix}" link_prefix="${link_prefix}" joint_prefix="${joint_prefix}" parent="${prefix}lfmetacarpal" >
-        <insert_block name="origin" />
+        <xacro:insert_block name="origin" />
       </xacro:knuckle>
     </xacro:if> 
     <!-- Standard finger -->
     <xacro:unless value="${lf}">
       <!-- Knuckle -->
       <xacro:knuckle muscle="${muscletrans}" prefix="${prefix}" link_prefix="${link_prefix}" joint_prefix="${joint_prefix}" parent="${parent}" >
-        <insert_block name="origin" />
+        <xacro:insert_block name="origin" />
       </xacro:knuckle>
     </xacro:unless> 
         
