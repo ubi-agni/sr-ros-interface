@@ -1,0 +1,34 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <xacro:macro name="palm_tactile" params="prefix reflect meshes:=1 normals:=0">
+    <!-- link parameters -->
+    <xacro:property name="ns" value="${prefix}palm"/>
+    <!-- tactile data parameters -->
+    <xacro:property name="xs" value="0 4095"/>
+    <!-- mesh parameters -->
+    <xacro:property name="dir" value="package://sr_description/hand/model/ubi_tactiles"/>
+    <xacro:property name="mesh_scale" value="${reflect*0.00101} 0.00101 0.00101"/>
+    <!-- arrow parameters -->
+    <xacro:property name="arrow_scale" value="0.01 0.0005 0.001"/>
+
+    <xacro:property name="topic" value="palm_extras"/>
+    <xacro:property name="link" value="${prefix}lfmetacarpal"/>
+    <xacro:tactile data="data[6]" mesh="${dir}/tax_metac_upper.stl"/>
+    <xacro:tactile data="data[7]" mesh="${dir}/tax_metac_lower.stl"/>
+    <xacro:tactile data="data[8]" mesh="${dir}/tax_metac_side.stl"/>
+
+    <xacro:property name="link" value="${prefix}palm"/>
+    <xacro:tactile data="data[9]" mesh="${dir}/tax_palm_side.stl"/>
+
+    <xacro:property name="topic" value="tactile_aux_spi"/>
+    <xacro:tactile data="sensors[0]" mesh="${dir}/tax_palm_up_r.stl"/>
+    <xacro:tactile data="sensors[1]" mesh="${dir}/tax_palm_up_mid.stl"/>
+    <xacro:tactile data="sensors[2]" mesh="${dir}/tax_palm_up_l.stl"/>
+    <xacro:tactile data="sensors[3]" mesh="${dir}/tax_palm_center_r.stl"/>
+    <xacro:tactile data="sensors[4]" mesh="${dir}/tax_palm_center_l.stl"/>
+    <xacro:tactile data="sensors[5]" mesh="${dir}/tax_palm_center_mid.stl"/>
+    <xacro:tactile data="sensors[6]" mesh="${dir}/tax_palm_down_r.stl"/>
+    <xacro:tactile data="sensors[7]" mesh="${dir}/tax_palm_down_l.stl"/>
+  </xacro:macro>
+</robot>

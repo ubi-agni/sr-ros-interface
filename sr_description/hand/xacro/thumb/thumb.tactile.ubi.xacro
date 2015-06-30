@@ -1,0 +1,44 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Create <tactile> tags for a single finger
+       tactile: sensor type
+       prefix:  hand prefix, usually rh_ or lh_
+       reflect: +1 / -1 to indicate right / left hand
+       meshes:  create tags for mesh markers?
+       normals: create tags for arrow markers?
+  -->
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <!-- link_prefix prepends fingername to the link names -->
+  <!-- finger_number is the finger index in the distal tactile message -->
+  <xacro:macro name="thumb_tactile" params="prefix reflect meshes normals">
+    <xacro:property name="ns" value="${prefix}th"/>
+    <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/thumb/"/>
+
+    <!-- mesh parameters -->
+    <xacro:property name="mesh_dir" value="package://sr_description/hand/model/ubi_tactiles"/>
+    <xacro:property name="mesh_scale" value="0.00101 0.00101 0.00101"/>
+    <xacro:property name="origin"><origin xyz="0 0 0" rpy="0 0 0"/></xacro:property>
+    <!-- arrow parameters -->
+    <xacro:property name="arrow_scale" value="0.01 0.0005 0.001"/>
+
+    <!-- Distal  -->
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/distal.taxels.ubi.yaml')}"/>
+    <xacro:property name="topic" value="tactile"/>
+    <xacro:property name="data" value="tactiles[4]/distal"/>
+    <xacro:property name="link" value="${prefix}thdistal"/>
+    <xacro:property name="xs" value="1023 0"/>
+
+    <xacro:tactile data="${data}[0]" mesh="${mesh_dir}/tax_tip_0.stl"/>
+    <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_tip_1.stl"/>
+    <xacro:tactile data="${data}[2]" mesh="${mesh_dir}/tax_tip_2.stl"/>
+    <xacro:tactile data="${data}[3]" mesh="${mesh_dir}/tax_tip_3.stl"/>
+    <xacro:tactile data="${data}[4]" mesh="${mesh_dir}/tax_tip_4.stl"/>
+    <xacro:tactile data="${data}[5]" mesh="${mesh_dir}/tax_tip_5.stl"/>
+    <xacro:tactile data="${data}[6]" mesh="${mesh_dir}/tax_tip_6.stl"/>
+    <xacro:tactile data="${data}[7]" mesh="${mesh_dir}/tax_tip_7.stl"/>
+    <xacro:tactile data="${data}[8]" mesh="${mesh_dir}/tax_tip_8.stl"/>
+    <xacro:tactile data="${data}[9]" mesh="${mesh_dir}/tax_tip_9.stl"/>
+    <xacro:tactile data="${data}[10]" mesh="${mesh_dir}/tax_tip_10.stl"/>
+    <xacro:tactile data="${data}[11]" mesh="${mesh_dir}/tax_tip_11.stl"/>
+  </xacro:macro>
+
+</robot>

@@ -1,34 +1,71 @@
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find sr_description)/hand/xacro/palm/palm.tactile.xacro" />
-  <xacro:include filename="$(find sr_description)/hand/xacro/finger/fingers.tactile.xacro" /> 
-  
-  <xacro:property name="M_PI" value="3.1415926535897931" />
- 
-  <!-- bio is true for biotac finger or false for standard finger -->
-  <!-- ubi is true for ubi finger or false for standard finger -->
-  <!-- eli is true for ellipsoid fingertip or false for standard finger -->
-  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
-  <xacro:macro name="shadowhand_tactile" params="bio ubi eli reflect prefix">
-  
-        
-    <!-- Palm -->   
-    <xacro:palm_tactile reflect="${reflect}" prefix="${prefix}" />
+  <!-- Create mesh and arrow markers for a single taxel.
+       Expected parameters:
+       meshes + normals = 0 | 1
+       topic: ROS topic
+       data: data field in ROS topic stream
+       link: link name
+       ns:   marker namespace in rviz
+       xs:   raw sensor range
+       mesh: mesh resource
+       mesh_scale: 3-dim vector for mesh scaling
+       normal_scale
+  -->
+  <xacro:macro name="xacro:tactile" params="topic data link ns xs
+                                            mesh mesh_scale arrow_scale
+                                            meshes normals">
+    <!-- extract channel number -->
+    <xacro:property name="channel" value="${data[:-1].rsplit('[',1)[1]}"/>
 
-    <!-- First Finger -->   
-    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="ff"  finger_number="0"/>
-    
-    <!-- Middle Finger -->   
-    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="mf"  finger_number="1"/>
-    <!-- Ring Finger -->   
-    <xacro:finger_tactile lf="false" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="rf"  finger_number="2"/>
+    <xacro:if value="${meshes}">
+      <!-- mesh marker -->
+      <tactile topic="${topic}" data="${data}"
+               link="${link}" ns="meshes/${ns}" xs="${xs}">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh}" scale="${mesh_scale}" />
+        </geometry>
+      </tactile>
+    </xacro:if>
 
-    <!-- Little Finger  --> 
-    <xacro:finger_tactile lf="true" bio="${bio}" ubi="${ubi}" eli="${eli}" reflect="${reflect}" prefix="${prefix}" link_prefix="lf"  finger_number="3"/>
+    <xacro:if value="${normals}">
+      <!-- arrow marker -->
+      <tactile topic="${topic}" data="${data}" link="${link}" ns="normals/${ns}" xs="${xs}">
+        <origin xyz="${' '.join([str(v) for v in taxel_data['positions'][channel]])}"/>
+        <geometry>
+          <arrow dir="${' '.join([str(v) for v in taxel_data['normals'][channel]])}"
+                 scale="${arrow_scale}"/>
+        </geometry>
+      </tactile>
+    </xacro:if>
+  </xacro:macro>
 
+  <!-- Create <tactile> tags describing the taxels
+       tactile: sensor type
+       prefix:  hand prefix, usually rh_ or lh_
+       reflect: +1 / -1 to indicate right / left hand
+       meshes:  create tags for mesh markers?
+       normals: create tags for arrow markers?
+  -->
+  <xacro:macro name="shadowhand_tactile" params="tactile reflect:=1 prefix:='' meshes normals">
+    <xacro:include filename="$(find sr_description)/hand/xacro/palm/palm.tactile.${tactile}.xacro"/>
+    <xacro:include filename="$(find sr_description)/hand/xacro/finger/fingers.tactile.${tactile}.xacro"/>
+    <xacro:include filename="$(find sr_description)/hand/xacro/thumb/thumb.tactile.${tactile}.xacro"/>
+
+    <!-- Palm -->
+    <xacro:palm_tactile normals="0"/>
+
+    <!-- First Finger -->
+    <xacro:finger_tactile finger="ff"/>
+    <!-- Middle Finger -->
+    <xacro:finger_tactile finger="mf"/>
+    <!-- Ring Finger -->
+    <xacro:finger_tactile finger="rf"/>
+    <!-- Little Finger  -->
+    <xacro:finger_tactile finger="lf"/>
+    <!-- Thumb  -->
+    <xacro:thumb_tactile/>
   </xacro:macro>
 
 </robot>

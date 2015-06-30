@@ -1,0 +1,65 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Create <tactile> tags for a single finger
+       tactile: sensor type
+       prefix:  hand prefix, usually rh_ or lh_
+       finger:  finger name (ff, mf, rf, lf)
+       reflect: +1 / -1 to indicate right / left hand
+       meshes:  create tags for mesh markers?
+       normals: create tags for arrow markers?
+  -->
+  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
+  <!-- link_prefix prepends fingername to the link names -->
+  <!-- finger_number is the finger index in the distal tactile message -->
+  <xacro:macro name="finger_tactile" params="prefix finger reflect meshes normals">
+    <xacro:property name="finger_no" value="${dict(ff=0, mf=1, rf=2, lf=3)}"/>
+    <xacro:property name="ns" value="${prefix}${finger}"/>
+    <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/finger"/>
+
+    <!-- mesh parameters -->
+    <xacro:property name="mesh_dir" value="package://sr_description/hand/model/ubi_tactiles"/>
+    <xacro:property name="mesh_scale" value="0.00101 0.00101 0.00101"/>
+    <xacro:property name="origin"><origin xyz="0 0 0" rpy="0 0 0"/></xacro:property>
+    <!-- arrow parameters -->
+    <xacro:property name="arrow_scale" value="0.01 0.0005 0.001"/>
+
+    <!-- Proximal -->
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/proximal/proximal.taxels.ubi.yaml')}"/>
+    <xacro:property name="topic" value="tactile_mid_prox"/>
+    <xacro:property name="data" value="sensors[${finger_no[finger]}]/proximal"/>
+    <xacro:property name="link" value="${prefix}${finger}proximal"/>
+    <xacro:property name="xs" value="0 4095"/>
+
+    <xacro:tactile data="${data}[0]"  mesh="${mesh_dir}/tax_prox_r.stl"/>
+    <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_prox_m.stl"/>
+    <xacro:tactile data="${data}[2]" mesh="${mesh_dir}/tax_prox_l.stl"/>
+
+    <!-- Middle -->
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/middle/middle.taxels.ubi.yaml')}"/>
+    <xacro:property name="data" value="sensors[${finger_no[finger]}]/middle"/>
+    <xacro:property name="link" value="${prefix}${finger}middle"/>
+
+    <xacro:tactile data="${data}[0]" mesh="${mesh_dir}/tax_mid_l.stl"/>
+    <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_mid_r.stl"/>
+
+    <!-- Distal  -->
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/distal/distal.taxels.ubi.yaml')}"/>
+    <xacro:property name="topic" value="tactile"/>
+    <xacro:property name="data" value="tactiles[${finger_no[finger]}]/distal"/>
+    <xacro:property name="link" value="${prefix}${finger}distal"/>
+    <xacro:property name="xs" value="1023 0"/>
+
+    <xacro:tactile data="${data}[0]" mesh="${mesh_dir}/tax_tip_0.stl"/>
+    <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_tip_1.stl"/>
+    <xacro:tactile data="${data}[2]" mesh="${mesh_dir}/tax_tip_2.stl"/>
+    <xacro:tactile data="${data}[3]" mesh="${mesh_dir}/tax_tip_3.stl"/>
+    <xacro:tactile data="${data}[4]" mesh="${mesh_dir}/tax_tip_4.stl"/>
+    <xacro:tactile data="${data}[5]" mesh="${mesh_dir}/tax_tip_5.stl"/>
+    <xacro:tactile data="${data}[6]" mesh="${mesh_dir}/tax_tip_6.stl"/>
+    <xacro:tactile data="${data}[7]" mesh="${mesh_dir}/tax_tip_7.stl"/>
+    <xacro:tactile data="${data}[8]" mesh="${mesh_dir}/tax_tip_8.stl"/>
+    <xacro:tactile data="${data}[9]" mesh="${mesh_dir}/tax_tip_9.stl"/>
+    <xacro:tactile data="${data}[10]" mesh="${mesh_dir}/tax_tip_10.stl"/>
+    <xacro:tactile data="${data}[11]" mesh="${mesh_dir}/tax_tip_11.stl"/>
+  </xacro:macro>
+
+</robot>
