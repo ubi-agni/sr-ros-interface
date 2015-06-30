@@ -6,12 +6,14 @@
     <xacro:property name="ns" value="${prefix}palm"/>
     <!-- tactile data parameters -->
     <xacro:property name="xs" value="0 4095"/>
+    <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/palm"/>
     <!-- mesh parameters -->
     <xacro:property name="dir" value="package://sr_description/hand/model/ubi_tactiles"/>
     <xacro:property name="mesh_scale" value="${reflect*0.00101} 0.00101 0.00101"/>
     <!-- arrow parameters -->
     <xacro:property name="arrow_scale" value="0.01 0.0005 0.001"/>
 
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/metacarpal.taxels.ubi.yaml')}"/>
     <xacro:property name="topic" value="palm_extras"/>
     <xacro:property name="link" value="${prefix}lfmetacarpal"/>
     <xacro:tactile data="data[6]" mesh="${dir}/tax_metac_upper.stl"/>
@@ -21,6 +23,7 @@
     <xacro:property name="link" value="${prefix}palm"/>
     <xacro:tactile data="data[9]" mesh="${dir}/tax_palm_side.stl"/>
 
+    <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/palm.taxels.ubi.yaml')}"/>
     <xacro:property name="topic" value="tactile_aux_spi"/>
     <xacro:tactile data="sensors[0]" mesh="${dir}/tax_palm_up_r.stl"/>
     <xacro:tactile data="sensors[1]" mesh="${dir}/tax_palm_up_mid.stl"/>

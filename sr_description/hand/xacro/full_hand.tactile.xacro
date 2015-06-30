@@ -54,7 +54,7 @@
     <xacro:include filename="$(find sr_description)/hand/xacro/thumb/thumb.tactile.${tactile}.xacro"/>
 
     <!-- Palm -->
-    <xacro:palm_tactile normals="0"/>
+    <xacro:palm_tactile />
 
     <!-- First Finger -->
     <xacro:finger_tactile finger="ff"/>
