@@ -25,7 +25,7 @@
     <xacro:property name="topic" value="tactile"/>
     <xacro:property name="data" value="tactiles[4]/distal"/>
     <xacro:property name="link" value="${prefix}thdistal"/>
-    <xacro:property name="xs" value="1023 0"/>
+    <xacro:property name="xs" value="0 1023"/>
 
     <xacro:tactile data="${data}[0]" mesh="${mesh_dir}/tax_tip_0.stl"/>
     <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_tip_1.stl"/>
