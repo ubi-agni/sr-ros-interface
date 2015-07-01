@@ -2,19 +2,22 @@
 
   <!-- Create mesh and arrow markers for a single taxel.
        Expected parameters:
-       meshes + normals = 0 | 1
        topic: ROS topic
        data: data field in ROS topic stream
        link: link name
        ns:   marker namespace in rviz
        xs:   raw sensor range
+       taxel_data: dict of taxel positions and normals
        mesh: mesh resource
        mesh_scale: 3-dim vector for mesh scaling
-       normal_scale
+       arrow_scale: 4-dim scaling vector:
+                    len scaling, shaft thickness, head thickness, head len
+       meshes + normals = 0 | 1
   -->
-  <xacro:macro name="xacro:tactile" params="topic data link ns xs
-                                            mesh mesh_scale arrow_scale
-                                            meshes normals">
+  <xacro:macro name="xacro:tactile"
+               params="topic:=$ data link:=$ ns:=$ xs:=$ taxel_data:=$
+                       mesh:=$ mesh_scale:=$ arrow_scale:=$
+                       meshes:=$ normals:=$">
     <!-- extract channel number -->
     <xacro:property name="channel" value="${data[:-1].rsplit('[',1)[1]}"/>
 
@@ -48,7 +51,8 @@
        meshes:  create tags for mesh markers?
        normals: create tags for arrow markers?
   -->
-  <xacro:macro name="shadowhand_tactile" params="tactile reflect:=1 prefix:='' meshes normals">
+  <xacro:macro name="shadowhand_tactile"
+               params="tactile:=$ reflect:=$|1 prefix:=$|'' meshes:=$ normals:=$">
     <xacro:include filename="$(find sr_description)/hand/xacro/palm/palm.tactile.${tactile}.xacro"/>
     <xacro:include filename="$(find sr_description)/hand/xacro/finger/fingers.tactile.${tactile}.xacro"/>
     <xacro:include filename="$(find sr_description)/hand/xacro/thumb/thumb.tactile.${tactile}.xacro"/>

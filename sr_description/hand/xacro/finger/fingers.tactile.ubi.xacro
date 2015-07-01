@@ -7,10 +7,9 @@
        meshes:  create tags for mesh markers?
        normals: create tags for arrow markers?
   -->
-  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
-  <!-- link_prefix prepends fingername to the link names -->
-  <!-- finger_number is the finger index in the distal tactile message -->
-  <xacro:macro name="finger_tactile" params="prefix finger reflect meshes normals">
+  <xacro:macro name="finger_tactile"
+               params="prefix:=$|'' reflect:=$|1 finger
+                       meshes:=$|1 normals:=$|1">
     <xacro:property name="finger_no" value="${dict(ff=0, mf=1, rf=2, lf=3)}"/>
     <xacro:property name="ns" value="${prefix}${finger}"/>
     <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/finger"/>

@@ -1,7 +1,13 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
-  <xacro:macro name="palm_tactile" params="prefix reflect meshes:=1 normals:=0">
+  <!-- Create <tactile> tags for a single finger
+       prefix:  hand prefix, usually rh_ or lh_
+       reflect: +1 / -1 to indicate right / left hand
+       meshes:  create tags for mesh markers?
+       normals: create tags for arrow markers?
+  -->
+  <xacro:macro name="palm_tactile"
+               params="prefix:=$|'' reflect:=$|1 meshes:=$|1 normals:=$|1">
     <!-- link parameters -->
     <xacro:property name="ns" value="${prefix}palm"/>
     <!-- tactile data parameters -->

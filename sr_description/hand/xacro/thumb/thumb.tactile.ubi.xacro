@@ -1,15 +1,12 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Create <tactile> tags for a single finger
-       tactile: sensor type
        prefix:  hand prefix, usually rh_ or lh_
        reflect: +1 / -1 to indicate right / left hand
        meshes:  create tags for mesh markers?
        normals: create tags for arrow markers?
   -->
-  <!-- prefix can be anything but usually is "r_" or  "l_" for right and left hands distinction -->
-  <!-- link_prefix prepends fingername to the link names -->
-  <!-- finger_number is the finger index in the distal tactile message -->
-  <xacro:macro name="thumb_tactile" params="prefix reflect meshes normals">
+  <xacro:macro name="thumb_tactile"
+               params="prefix:=$|'' reflect:=$|1 meshes:=$|1 normals:=$|1">
     <xacro:property name="ns" value="${prefix}th"/>
     <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/thumb/"/>
 
