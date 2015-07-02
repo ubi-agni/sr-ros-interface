@@ -26,7 +26,7 @@
     <xacro:property name="topic" value="tactile_mid_prox"/>
     <xacro:property name="data" value="sensors[${finger_no[finger]}]/proximal"/>
     <xacro:property name="link" value="${prefix}${finger}proximal"/>
-    <xacro:property name="xs" value="0 4095"/>
+    <xacro:property name="xs" value="0 2047"/>
 
     <xacro:tactile data="${data}[0]"  mesh="${mesh_dir}/tax_prox_r.stl"/>
     <xacro:tactile data="${data}[1]" mesh="${mesh_dir}/tax_prox_m.stl"/>

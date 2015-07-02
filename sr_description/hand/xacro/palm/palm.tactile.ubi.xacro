@@ -11,7 +11,7 @@
     <!-- link parameters -->
     <xacro:property name="ns" value="${prefix}palm"/>
     <!-- tactile data parameters -->
-    <xacro:property name="xs" value="0 4095"/>
+    <xacro:property name="xs" value="0 2047"/>
     <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/palm"/>
     <!-- mesh parameters -->
     <xacro:property name="dir" value="package://sr_description/hand/model/ubi_tactiles"/>
