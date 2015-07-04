@@ -1,4 +1,4 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<taxel xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Create mesh and arrow markers for a single taxel.
        Expected parameters:
@@ -14,11 +14,11 @@
                     len scaling, shaft thickness, head thickness, head len
        meshes + normals = 0 | 1
   -->
-  <xacro:macro name="xacro:tactile"
+  <xacro:macro name="xacro:taxel"
                params="topic:=$ data link:=$ ns:=$ xs:=$ taxel_data:=$
                        mesh:=$ mesh_scale:=$ arrow_scale:=$
                        meshes:=$ normals:=$">
-    <!-- extract channel number -->
+    <!-- extract channel number from data -->
     <xacro:property name="channel" value="${data[:-1].rsplit('[',1)[1]}"/>
 
     <xacro:if value="${meshes}">
@@ -44,31 +44,4 @@
     </xacro:if>
   </xacro:macro>
 
-  <!-- Create <tactile> tags describing the taxels
-       tactile: sensor type
-       prefix:  hand prefix, usually rh_ or lh_
-       reflect: +1 / -1 to indicate right / left hand
-       meshes:  create tags for mesh markers?
-       normals: create tags for arrow markers?
-  -->
-  <xacro:macro name="shadowhand_tactile"
-               params="tactile:=$ reflect:=$|1 prefix:=$|'' meshes:=$ normals:=$">
-    <!-- load macros specific to sensor type -->
-    <xacro:include filename="$(find sr_description)/hand/xacro/tactile.${tactile}.xacro"/>
-
-    <!-- Palm -->
-    <xacro:palm_tactile />
-
-    <!-- First Finger -->
-    <xacro:finger_tactile finger="ff"/>
-    <!-- Middle Finger -->
-    <xacro:finger_tactile finger="mf"/>
-    <!-- Ring Finger -->
-    <xacro:finger_tactile finger="rf"/>
-    <!-- Little Finger  -->
-    <xacro:finger_tactile finger="lf"/>
-    <!-- Thumb  -->
-    <xacro:thumb_tactile/>
-  </xacro:macro>
-
-</robot>
+</taxel>
