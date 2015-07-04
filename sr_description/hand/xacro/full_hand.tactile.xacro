@@ -53,22 +53,24 @@
   -->
   <xacro:macro name="shadowhand_tactile"
                params="tactile:=$ reflect:=$|1 prefix:=$|'' meshes:=$ normals:=$">
-    <!-- load macros specific to sensor type -->
-    <xacro:include filename="$(find sr_description)/hand/xacro/tactile.${tactile}.xacro"/>
+    <xacro:if value="${tactile in ['ubi']}">
+      <!-- load macros specific to sensor type -->
+      <xacro:include filename="$(find sr_description)/hand/xacro/tactile.${tactile}.xacro"/>
 
-    <!-- Palm -->
-    <xacro:palm_tactile />
+      <!-- Palm -->
+      <xacro:palm_tactile />
 
-    <!-- First Finger -->
-    <xacro:finger_tactile finger="ff"/>
-    <!-- Middle Finger -->
-    <xacro:finger_tactile finger="mf"/>
-    <!-- Ring Finger -->
-    <xacro:finger_tactile finger="rf"/>
-    <!-- Little Finger  -->
-    <xacro:finger_tactile finger="lf"/>
-    <!-- Thumb  -->
-    <xacro:thumb_tactile/>
+      <!-- First Finger -->
+      <xacro:finger_tactile finger="ff"/>
+      <!-- Middle Finger -->
+      <xacro:finger_tactile finger="mf"/>
+      <!-- Ring Finger -->
+      <xacro:finger_tactile finger="rf"/>
+      <!-- Little Finger  -->
+      <xacro:finger_tactile finger="lf"/>
+      <!-- Thumb  -->
+      <xacro:thumb_tactile/>
+    </xacro:if>
   </xacro:macro>
 
 </robot>
