@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="ur_gazebo_controller_manager" params="namespace">
+    <gazebo>
+      <plugin filename="libgazebo_ros_control.so" name="ros_control">
+        <robotNamespace>${namespace}</robotNamespace>
+      </plugin>
+    </gazebo>
+  </xacro:macro>  
+</robot>

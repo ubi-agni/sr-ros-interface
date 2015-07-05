@@ -1,7 +1,8 @@
- <robot xmlns:xacro="http://ros.org/wiki/xacro" name="ur10srh">
+ <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur10srh">
 
   <!--<xacro:include filename="$(find ur_description)/urdf/gazebo.urdf.xacro" />-->
   <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
+  
   <link name="world" />
 
   <joint name="world_joint" type="fixed">
@@ -10,14 +11,21 @@
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
-  <xacro:ur10_robot prefix="ra_" joint_limited="false"/>
-
+  <!-- instantiate the arm -->
+  <xacro:ur10_robot prefix="ra_" joint_limited="false" />
+  <!-- add the plugin which will be in a namespace (ra) -->
+  <xacro:include filename="$(find sr_multi_description)/urdf/ur_gazebo.urdf.xacro" />
+  <xacro:ur_gazebo_controller_manager namespace="ra" />
+  
   <xacro:include filename="$(find sr_description)/materials.urdf.xacro" />
   <xacro:include filename="$(find sr_description)/hand/xacro/full_hand.urdf.xacro" />
-  <xacro:include filename="$(find sr_description)/other/xacro/gazebo/gazebo.urdf.xacro" />
-
+  
+  <!-- instantiate the hand -->
   <xacro:shadowhand muscletrans="false" muscle="false" bio="false" bt_sp="false" ubi="false" eli="false" reflect="1.0" prefix="rh_" />
-
+  <!-- add the plugin which will be in a namespace (rh) -->
+  <xacro:include filename="$(find sr_multi_description)/urdf/sr_gazebo.urdf.xacro" />
+  <xacro:shadow_gazebo_controller_manager namespace="rh" />
+  
     <joint name="arm_to_hand" type="fixed">
       <parent link="ra_ee_link" />
       <child link = "rh_forearm" />
