@@ -123,6 +123,8 @@
     <!-- default finger and data properties to allow calling tactile_default_params -->
     <xacro:property name="finger" value="palm"/>
     <xacro:tactile_default_params _link=""/>
+    <!-- left palm marker meshes need to be reflected -->
+    <xacro:property name="mesh_scale" value="${reflect*0.00101} 0.00101 0.00101"/>
 
     <!-- taxels attached to lfmetacarpal -->
     <xacro:tactile data="data[6]" mesh="${mesh_dir}/tax_metac_upper.stl"/>
