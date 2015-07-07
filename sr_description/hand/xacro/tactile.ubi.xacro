@@ -4,7 +4,7 @@
   <!-- set default values if not yet done -->
   <xacro:macro name="tactile_default_params" params="_link">
     <!-- mapping between finger name and sensor channel -->
-    <xacro:property name="finger_no" value="${dict(ff=0, mf=1, rf=2, lf=3, th=4)}"/>
+    <xacro:property name="finger_no" value="${dict(ff=0, mf=1, rf=2, lf=3, th=4)}" scope="parent"/>
 
     <!-- mesh parameters -->
     <xacro:property name="mesh_dir" value="package://sr_description/hand/model/ubi_tactiles" scope="parent"/>
@@ -13,9 +13,6 @@
     <!-- arrow parameters -->
     <xacro:property name="arrow_scale" value="0.01 0.0005 0.001" scope="parent"/>
 
-    <xacro:if value="${data == ''}">
-      <xacro:property name="data" value="sensors[${finger_no[finger]}]/${_link}" scope="parent"/>
-    </xacro:if>
     <xacro:if value="${link == ''}">
       <xacro:property name="link" value="${prefix}${finger}${_link}" scope="parent"/>
     </xacro:if>
@@ -42,11 +39,12 @@
        normals: create tags for arrow markers?
   -->
   <xacro:macro name="proximal_tactile"
-               params="taxel_data topic:=tactile_mid_prox data:= link:= ns:= xs:=$
+               params="taxel_data topic:=tactile_mid_prox link:= ns:= xs:=$
                        prefix:=$|'' reflect:=$|1 finger:=$
                        meshes:=$|1 normals:=$|1">
 
     <xacro:tactile_default_params _link="proximal"/>
+    <xacro:property name="data" value="sensors[${finger_no[finger]}]/proximal"/>
     <xacro:taxel data="${data}[0]"  mesh="${mesh_dir}/tax_prox_r.stl"/>
     <xacro:taxel data="${data}[1]" mesh="${mesh_dir}/tax_prox_m.stl"/>
     <xacro:taxel data="${data}[2]" mesh="${mesh_dir}/tax_prox_l.stl"/>
@@ -54,22 +52,24 @@
   </xacro:macro>
 
   <xacro:macro name="middle_tactile"
-               params="taxel_data topic:=tactile_mid_prox data:= link:= ns:= xs:=$
+               params="taxel_data topic:=tactile_mid_prox link:= ns:= xs:=$
                        prefix:=$|'' reflect:=$|1 finger:=$
                        meshes:=$|1 normals:=$|1">
 
     <xacro:tactile_default_params _link="middle"/>
+    <xacro:property name="data" value="sensors[${finger_no[finger]}]/middle"/>
     <xacro:taxel data="${data}[0]" mesh="${mesh_dir}/tax_mid_l.stl"/>
     <xacro:taxel data="${data}[1]" mesh="${mesh_dir}/tax_mid_r.stl"/>
 
   </xacro:macro>
 
   <xacro:macro name="distal_tactile"
-               params="taxel_data topic:=tactile_mid_prox data:= link:= ns:= xs:=$
+               params="taxel_data topic:=tactile link:= ns:= xs:=$
                        prefix:=$|'' reflect:=$|1 finger:=$
                        meshes:=$|1 normals:=$|1">
 
     <xacro:tactile_default_params _link="distal"/>
+    <xacro:property name="data" value="tactiles[${finger_no[finger]}]/distal"/>
     <xacro:taxel data="${data}[0]" mesh="${mesh_dir}/tax_tip_0.stl"/>
     <xacro:taxel data="${data}[1]" mesh="${mesh_dir}/tax_tip_1.stl"/>
     <xacro:taxel data="${data}[2]" mesh="${mesh_dir}/tax_tip_2.stl"/>
@@ -122,7 +122,6 @@
 
     <!-- default finger and data properties to allow calling tactile_default_params -->
     <xacro:property name="finger" value="palm"/>
-    <xacro:property name="data" value="-"/>
     <xacro:tactile_default_params _link=""/>
 
     <!-- taxels attached to lfmetacarpal -->
