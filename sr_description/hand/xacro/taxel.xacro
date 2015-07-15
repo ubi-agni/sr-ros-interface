@@ -15,9 +15,9 @@
        meshes + normals = 0 | 1
   -->
   <xacro:macro name="xacro:taxel"
-               params="topic:=$ data link:=$ ns:=$ xs:=$ taxel_data:=$
-                       mesh:=$ mesh_scale:=$ arrow_scale:=$
-                       meshes:=$ normals:=$">
+               params="topic:=^ data link:=^ ns:=^ xs:=^ taxel_data:=^
+                       mesh:=^ mesh_scale:=^ arrow_scale:=^
+                       meshes:=^ normals:=^">
     <!-- extract channel number from data -->
     <xacro:property name="channel" value="${data[:-1].rsplit('[',1)[1]}"/>
 
