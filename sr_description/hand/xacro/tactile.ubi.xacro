@@ -39,7 +39,7 @@
        normals: create tags for arrow markers?
   -->
   <xacro:macro name="proximal_tactile"
-               params="taxel_data topic:=tactile_mid_prox link:= ns:= xs:=^
+               params="taxel_data topic:=tactile_mid_prox link:='' ns:='' xs:=^
                        prefix:=^|'' reflect:=^|1 finger:=^
                        meshes:=^|1 normals:=^|1">
 
@@ -52,7 +52,7 @@
   </xacro:macro>
 
   <xacro:macro name="middle_tactile"
-               params="taxel_data topic:=tactile_mid_prox link:= ns:= xs:=^
+               params="taxel_data topic:=tactile_mid_prox link:='' ns:='' xs:=^
                        prefix:=^|'' reflect:=^|1 finger:=^
                        meshes:=^|1 normals:=^|1">
 
@@ -64,7 +64,7 @@
   </xacro:macro>
 
   <xacro:macro name="distal_tactile"
-               params="taxel_data topic:=tactile link:= ns:= xs:=^
+               params="taxel_data topic:=tactile link:='' ns:='' xs:=^
                        prefix:=^|'' reflect:=^|1 finger:=^
                        meshes:=^|1 normals:=^|1">
 
@@ -113,7 +113,7 @@
   </xacro:macro>
 
   <xacro:macro name="palm_tactile"
-               params="prefix:=^|'' reflect:=^|1 meshes:=^|1 normals:=^|1 ns:=">
+               params="prefix:=^|'' reflect:=^|1 meshes:=^|1 normals:=^|1 ns:=''">
     <xacro:property name="taxel_dir" value="$(find sr_description)/hand/xacro/palm"/>
     <xacro:property name="xs" value="0 2047"/>
     <xacro:property name="taxel_data" value="${load_yaml(taxel_dir + '/metacarpal.taxels.ubi.yaml')}"/>
