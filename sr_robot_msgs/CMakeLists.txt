@@ -53,12 +53,19 @@ add_service_files(
   is_hand_occupied.srv
   ManualSelfTest.srv
   NullifyDemand.srv
+  RobotTeachMode.srv
   SetDebugData.srv
   SetEffortControllerGains.srv
   SetMixedPositionVelocityPidGains.srv
   SetPidGains.srv
   SimpleMotorFlasher.srv
   which_fingers_are_touching.srv
+  GetFastGraspFromBoundingBox.srv
+  PlanTrajectoryFromList.srv
+  PlanTrajectoryFromPrefix.srv
+  PlanNamedTrajectory.srv
+  ExecutePlannedTrajectory.srv
+  ListNamedTrajectories.srv
 )
 
 ## Generate actions in the 'action' folder

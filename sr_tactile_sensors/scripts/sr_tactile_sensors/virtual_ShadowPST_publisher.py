@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # This node combines 5 virtual touch sensors into a ShadowPST message compatible with etherCAT hand
 
-import roslib; roslib.load_manifest('sr_utilities')
 import rospy
-from std_msgs.msg import Float64,Int16
+from std_msgs.msg import Float64
 from sr_robot_msgs.msg import ShadowPST
 import thread
 
 
-class MergeMessages:
+class MergeMessages(object):
     def __init__(self):
         rospy.init_node('ShadowPST_publisher', anonymous=True)
         self.ff_sub=rospy.Subscriber('/sr_tactile/touch/ff',Float64,self.ff_cb)
@@ -25,7 +24,7 @@ class MergeMessages:
         self.mutex.acquire()
         self.pst[0]=msg.data
         self.mutex.release()
-        
+
     def mf_cb(self, msg):
         self.mutex.acquire()
         self.pst[1]=msg.data
@@ -45,8 +44,8 @@ class MergeMessages:
         self.mutex.acquire()
         self.pst[4]=msg.data
         self.mutex.release()
-        
-    def shadowpst_publisher(self):  
+
+    def shadowpst_publisher(self):
         pst_state_msg=ShadowPST()
         pst_state_msg.temperature=[0,0,0,0,0,0]
         pressure=[]
@@ -56,7 +55,7 @@ class MergeMessages:
         pst_state_msg.pressure=pressure
         #print pst_state_msg.pressure
         self.mutex.release()
-        
+
         pst_state_msg.header.stamp = rospy.Time.now()
         self.pub.publish(pst_state_msg)
 
